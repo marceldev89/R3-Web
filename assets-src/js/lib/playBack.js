@@ -25,15 +25,15 @@ PlayBack.prototype.init = function(replayDetails, sharedPresets, cacheAvailable)
         }
 
         // Fetch our event data from the server
-        self.fetch(cacheAvailable);
         players.init();
+        self.fetch(cacheAvailable);
     });
 }
 
 PlayBack.prototype.fetch = function(cacheAvailable) {
 
-    var eventSourceUrl = (!cacheAvailable) ? webPath + '/fetch-events' : webPath + '/cache/events/' + this.replayDetails.id + '.json';
-    var fetchType = (!cacheAvailable) ? 'POST' : 'GET';
+    var eventSourceUrl = "http://localhost:8080/api/aar";
+    var fetchType = "GET";
 
     var self = this;
 
@@ -44,7 +44,11 @@ PlayBack.prototype.fetch = function(cacheAvailable) {
         url: eventSourceUrl,
         type: fetchType,
         dataType: 'json',
-        data: { "id": this.replayDetails.id },
+        data: {
+            "name": opName,
+            "map": opMap,
+            "clan": opClan
+        },
         success: this.prepData.bind(self),
         error: function(xhr, errorType, message) {
             console.log('Error fetching playback data - Status: ' + errorType + ' - Message: ' + message);

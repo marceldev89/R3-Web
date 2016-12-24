@@ -14,14 +14,16 @@ Map.prototype.init = function(terrainName, cb) {
     if(typeof mappingConfig[this.terrain] !== "undefined")
         this.terrain = mappingConfig[this.terrain];
 
-    $.getJSON(this.tileDomain + this.terrain + '/config.json', function(configJson) {
-        self.config = configJson;
-        self.render(cb);
-    })
-    .fail(function(e) {
-        console.log("Error loading terrain config");
-        cb(true);
-    });
+    this.config = {
+        bgColor: "#C7E6FC",
+        doubleSize: 0,
+        width: 32768,
+        height: 32768,
+        initZoom: 4,
+        minZoom: 3,
+        maxZoom: 7
+    }
+    this.render(cb);
 };
 
 Map.prototype.render = function(cb) {
@@ -64,11 +66,12 @@ Map.prototype.render = function(cb) {
     var tileUrl = "https://r3tiles-{s}.titanmods.xyz/";
 
     // Add our terrain generated tiles
-    this.layer = L.tileLayer(tileUrl + this.terrain + '/tiles/{z}/{x}/{y}.png', {
+    this.layer = L.tileLayer("http://db.alivemod.com/maps/" + this.terrain + '/{z}/{x}/{y}.png', {
         noWrap: true,
         maxNativeZoom: this.config.maxZoom,
         maxZoom: 10,
-        errorTileUrl: webPath + '/assets/images/map/error-tile.png'
+        errorTileUrl: webPath + '/assets/images/map/error-tile.png',
+        tms: true
     }).addTo(this.handler);
 
     this.setupInteractionHandlers();
@@ -130,8 +133,9 @@ Map.prototype.gamePointToMapPoint = function(x, y) {
 
     } else {
 
-        var convertedX = x;
-        var convertedY = Math.abs(parseFloat(y) - parseFloat(this.config.height));
+        var multiplier = this.config.height / opSize;
+        var convertedX = x * multiplier;
+        var convertedY = this.config.height - (y * multiplier);
     }
 
     return [convertedX, convertedY];

@@ -22,7 +22,7 @@ var
     fs = require('fs'),
     paths = {};
 
-paths.dist = './dist/assets';
+paths.dist = '../alive-web/public/r3/assets';
 paths.css = './assets-src/css';
 paths.js = './assets-src/js';
 paths.images = './assets-src/images';

@@ -15,8 +15,27 @@ function Players() {
 };
 
 Players.prototype.init = function() {
+    var eventSourceUrl = "http://localhost:8080/api/playersbyoperation";
+    var fetchType = "GET";
 
-    this.prepData(playerList);
+    var self = this;
+
+    $.ajax({
+        url: eventSourceUrl,
+        type: fetchType,
+        dataType: 'json',
+        data: {
+            "name": opName,
+            "map": opMap,
+            "clan": opClan
+        },
+        success: this.prepData.bind(self),
+        error: function(jq, status, message) {
+            console.log('Error fetching player data - Status: ' + status + ' - Message: ' + message);
+        }
+    });
+
+    // this.prepData(playerList);
 
     this.setupInteractionHandlers();
 
