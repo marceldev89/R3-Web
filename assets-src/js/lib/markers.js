@@ -152,7 +152,7 @@ Markers.prototype.add = function(unit, data, type, timeUpdated) {
         iconSize: [30, 30],
         iconAnchor: [15, 15],
         className: 'unit-marker unit-marker__class--' + iconClass + ' unit-marker--' + icon + ' unit-marker__id--' + markerId,
-        iconUrl: 'https://r3icons.titanmods.xyz/'
+        iconUrl: webRoot + '/r3/assets/images/map/markers/'
     };
 
     // This marker isn't on the map yet

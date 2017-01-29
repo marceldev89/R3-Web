@@ -237,7 +237,7 @@ Players.prototype.updateList = function(forceUpdate) {
 
                 var playerData = self.getInfo(playerId);
 
-                var imgUrl = 'https://r3icons.titanmods.xyz/blank.png';
+                var imgUrl = webRoot + '/r3/assets/images/map/markers/blank.png';
 
                 //console.log('p', playerData);
                 //console.log(markers.list);
