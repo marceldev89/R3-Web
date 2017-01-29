@@ -65,7 +65,7 @@ ObjectiveMarkers.prototype.add = function(markerData) {
         var iconAnchor = [15, 15];
 
         var poiIcon = L.icon({
-            iconUrl: webRoot + '/r3/assets/images/map/markers/' + markerType + '.png',
+            iconUrl: 'https://r3icons.titanmods.xyz/' + markerType + '.png',
             iconSize: iconSize,
             iconAnchor: iconAnchor,
             className: 'obj-marker-image obj-marker-image--' + markerType

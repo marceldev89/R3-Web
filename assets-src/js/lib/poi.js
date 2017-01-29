@@ -78,7 +78,7 @@ Poi.prototype.add = function() {
             }
 
             var poiIcon = L.icon({
-                iconUrl: webRoot + '/r3/assets/images/map/markers/' + poiIconName + '.png',
+                iconUrl: 'https://r3icons.titanmods.xyz/' + poiIconName + '.png',
                 iconSize: iconSize,
                 iconAnchor: iconAnchor,
                 className: 'poi-image--' + poi.type
