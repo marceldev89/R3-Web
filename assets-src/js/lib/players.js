@@ -15,7 +15,7 @@ function Players() {
 };
 
 Players.prototype.init = function() {
-    var eventSourceUrl = "http://localhost:8080/api/playersbyoperation";
+    var eventSourceUrl = webRoot + "/api/playersbyoperation";
     var fetchType = "GET";
 
     var self = this;

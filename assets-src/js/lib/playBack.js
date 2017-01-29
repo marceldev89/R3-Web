@@ -33,7 +33,7 @@ PlayBack.prototype.init = function(replayDetails, sharedPresets, cacheAvailable)
 
 PlayBack.prototype.fetch = function(cacheAvailable) {
 
-    var eventSourceUrl = "http://localhost:8080/api/aar";
+    var eventSourceUrl = webRoot + "/api/aar";
     var fetchType = "GET";
 
     var self = this;
